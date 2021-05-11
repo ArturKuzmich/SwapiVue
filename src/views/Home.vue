@@ -1,20 +1,17 @@
 <template>
   <div class="home">
-    asdasd
     <div
       v-for="(person, idx) in filteredData"
       :key="person.name"
       class="person">
-    {{idx + 1}} - {{person.name}} - {{person.gender}}
+     {{person.name}}  {{person.gender || ''}}
   </div>
     <select v-model="eyeValue"
             @change="filteredPeople($event)"
     >
-      <option disabled></option>
+      <option value="" disabled>Eye color</option>
       <option :value="person.eye_color" v-for="(person, idx) in people">{{person.eye_color}}</option>
     </select>
-
-    <span>Выбрано: {{eyeValue}}</span>
   </div>
 </template>
 
