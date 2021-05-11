@@ -1,19 +1,18 @@
 <template>
-  <div class="swapi_app">
-    <NavBar />
-    <div
-      v-for="(person, idx) in filteredData"
-      :key="person.name"
-      class="person">
-     {{person.name}}  {{person.gender || ''}}
-  </div>
-    <select v-model="eyeValue"
-            @change="filteredPeople($event)"
-    >
-      <option value="" disabled>Eye color</option>
-      <option :value="person.eye_color" v-for="(person, idx) in people">{{person.eye_color}}</option>
-    </select>
-  </div>
+    <div class="">
+      <div
+          v-for="(person, idx) in filteredData"
+          :key="person.name"
+          class="person">
+        {{person.name}}  {{person.gender || ''}}
+      </div>
+      <select v-model="eyeValue"
+              @change="filteredPeople($event)"
+      >
+        <option value="" disabled>Eye color</option>
+        <option :value="person.eye_color" v-for="(person, idx) in people">{{person.eye_color}}</option>
+      </select>
+    </div>
 </template>
 
 <script>
@@ -76,8 +75,6 @@ export default {
 }
 </script>
 <style  lang="scss">
-@import "./src/assets/clear/clear";
-.swapi_app{
-  max-width: 1440px;
-}
+
+
 </style>

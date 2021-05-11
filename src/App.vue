@@ -1,28 +1,38 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div id="swapi_app">
+    <NavBar />
+    <div class="app_inner">
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import "./src/assets/clear/clear";
+@font-face {
+  font-family: 'HelveticaNeueCyr';
+  src: local('HelveticaNeueCyr Thin'), local('HelveticaNeueCyr Thin'),
+  url('~@/assets/fonts/HelveticaThin/HelveticaThin.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+@font-face {
+  font-family: 'HelveticaRegular';
+  src: local('HelveticaNeueCyr Roman'), local('HelveticaNeueCyr Roman'),
+  url('~@/assets/fonts/HelveticaRegular/HelveticaRegular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+  #swapi_app{
+    max-width: 1440px;
+    .app_inner{
+      padding: 0 104px;
     }
   }
-}
 </style>
+<script>
+import NavBar from "@/components/NavBar";
+export default {
+  components: {NavBar}
+}
+</script>
