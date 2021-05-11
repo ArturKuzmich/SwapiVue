@@ -1,5 +1,6 @@
 <template>
-  <div class="home">
+  <div class="swapi_app">
+    <NavBar />
     <div
       v-for="(person, idx) in filteredData"
       :key="person.name"
@@ -17,8 +18,10 @@
 
 <script>
 import { mapActions, mapState, mapGetters } from 'vuex';
+import NavBar from "@/components/NavBar";
 export default {
   name: 'Home',
+  components: {NavBar},
   data(){
     return{
       loading: false,
@@ -72,3 +75,9 @@ export default {
 
 }
 </script>
+<style  lang="scss">
+@import "./src/assets/clear/clear";
+.swapi_app{
+  max-width: 1440px;
+}
+</style>
