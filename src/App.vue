@@ -24,7 +24,6 @@
   font-style: normal;
 }
   #swapi_app{
-    max-width: 1440px;
     .app_inner{
       padding: 0 104px;
     }

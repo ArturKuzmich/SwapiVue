@@ -8,3 +8,4 @@ const getPeople = (success, fail) => {
 };
 
 export { getPeople }
+
