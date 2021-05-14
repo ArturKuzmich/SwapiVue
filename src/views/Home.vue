@@ -12,7 +12,7 @@
         <div class="select-vis_r">
           <Select
               @select="sortedState"
-              :selected="estateSort"
+              :selected="chooseSort"
               :options="sortedBy"
               :placeholder="'Sort by'"
           />
@@ -33,15 +33,13 @@ export default {
   data(){
     return{
       loading: false,
-      eyeArray: [],
       selectedColor: '',
       sortedBy: [
           'age',
           'height',
           'mass'
       ],
-      sortedData: [],
-      estateSort: ''
+      chooseSort: ''
     }
   },
   created () {
@@ -52,40 +50,18 @@ export default {
   },
   computed: {
     ...mapState('people', ['people', ]),
-    ...mapGetters('people', ['people']),
-
+    ...mapGetters('people', ['people', 'getByEyeColor', "sortBy"]),
     filteredData(){
       let data = [...this.people]
       //eye filtering'
-
-
-      if(this.selectedColor !== ''){
-        let filterEye = new RegExp(this.selectedColor, 'i')
-        return data.filter(item => item.eye_color.match(filterEye))
+      if(this.selectedColor){
+        return this.getByEyeColor(this.selectedColor)
       }
-
-
-      // if(this.selectedColor !== ''){
-      //   data = data.filter(item => item.eye_color === this.selectedColor)
-      // }
-
-      // sortBy
-      if(this.estateSort !== ''){
-        if(this.estateSort === 'height'){
-          data = data.sort((prev, curr) => prev.height - curr.height)
-        }
-        else if(this.estateSort === 'age'){
-          data = data.sort((prev, curr) =>{
-            if(prev.birth_year < curr.birth_year) return -1
-            if(prev.birth_year > curr.birth_year) return 1
-            return 0
-          } )
-        }
-        else if(this.estateSort === 'mass'){
-          data = data.sort((prev, curr) => prev.mass - curr.mass)
-        }
+      if(this.chooseSort){
+        return this.sortBy(this.chooseSort)
+      }else{
+        return data;
       }
-      return data;
     },
     getUniqueEye(){
       let uniquEye = this.people
@@ -98,21 +74,7 @@ export default {
   methods: {
     ...mapActions('people', ['getAllPeople']),
     sortedState(value){
-      this.estateSort = value
-    },
-    sortBy: function(sortKey){
-      const names = this.people
-      names.sort((a, b) => {
-        var compare = 0;
-        if (a[sortKey] > b[sortKey]) {
-          compare = 1;
-        } else if (b[sortKey] > a[sortKey]) {
-          compare = -1;
-        }
-        return compare;
-      });
-      this.sorted = sortKey
-      // this.sortedData = names;
+      this.chooseSort = value
     },
     handleSuccess () {
       this.loading = false
@@ -130,7 +92,6 @@ export default {
       console.log(old, 'old')
     }
   }
-
 }
 </script>
 <style  lang="scss">

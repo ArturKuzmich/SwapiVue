@@ -26,7 +26,27 @@ const getters = {
     people (state){
         return state.people
     },
-
+    getByEyeColor: (state) => (color) => {
+        return state.people.filter(item => item.eye_color.match(color))
+    },
+    sortBy: (state) => (value) => {
+        switch(value){
+            case "height":
+                return state.people.sort((prev, curr) => prev.height - curr.height)
+                break;
+            case "mass":
+                return  state.people.sort((prev, curr) => prev.mass - curr.mass)
+                break;
+            case "age":
+                return state.people.sort((prev, curr) =>{
+                    if(prev.birth_year.substr(0,2) < curr.birth_year.substr(0,2)) return -1
+                    if(prev.birth_year.substr(0,2) > curr.birth_year.substr(0,2)) return 1
+                    return 0
+                } )
+                break;
+            default: return  state
+        }
+    }
     // male (state) {
     //     return state.people.filter(person => person.gender === 'male') || []
     // },
