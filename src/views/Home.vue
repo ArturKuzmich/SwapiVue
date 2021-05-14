@@ -1,5 +1,6 @@
 <template>
     <div class="swapi_content">
+      <h2 class="swapi_title">People</h2>
       <div class="select_row">
         <div class="select-vis_l">
           <Select
@@ -29,7 +30,7 @@ import PersonList from "@/components/PersonList";
 import Select from "@/components/Select";
 export default {
   name: 'Home',
-  components: {Select, PersonList, NavBar},
+  components: { Select, PersonList, NavBar},
   data(){
     return{
       loading: false,
@@ -105,10 +106,19 @@ export default {
 </script>
 <style  lang="scss">
 .swapi_content{
+  .swapi_title{
+    font-family: HelveticaNeueCyr;
+    font-weight: normal;
+    font-size: 32px;
+    line-height: 148%;
+    color: #000000;
+    margin: 64px 0 24px 0;
+  }
   .select_row{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 0 0 48px 0;
     .select-vis_l{
       display: flex;
       align-items: center;

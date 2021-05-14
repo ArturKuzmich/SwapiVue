@@ -46,6 +46,7 @@ name: "PersonList",
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    margin: 0 0 112px 0;
     .person{
       position: relative;
       border-radius: 6px;
