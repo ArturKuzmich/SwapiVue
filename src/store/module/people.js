@@ -27,7 +27,11 @@ const getters = {
         return state.people
     },
     getByEyeColor: (state) => (color) => {
-        return state.people.filter(item => item.eye_color.match(color))
+        if(color){
+            return state.people.filter(item => item.eye_color.match(color))
+        }else{
+            return state
+        }
     },
     sortBy: (state) => (value) => {
         switch(value){
@@ -39,6 +43,7 @@ const getters = {
                 break;
             case "age":
                 return state.people.sort((prev, curr) =>{
+                    console.log(prev.birth_year.substr(0,2))
                     if(prev.birth_year.substr(0,2) < curr.birth_year.substr(0,2)) return -1
                     if(prev.birth_year.substr(0,2) > curr.birth_year.substr(0,2)) return 1
                     return 0

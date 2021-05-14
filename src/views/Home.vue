@@ -53,15 +53,17 @@ export default {
     ...mapGetters('people', ['people', 'getByEyeColor', "sortBy"]),
     filteredData(){
       let data = [...this.people]
-      //eye filtering'
+
       if(this.selectedColor){
         return this.getByEyeColor(this.selectedColor)
       }
-      if(this.chooseSort){
+       if(this.chooseSort){
         return this.sortBy(this.chooseSort)
-      }else{
-        return data;
       }
+      // else{
+      //   return data;
+      // }
+      return  data
     },
     getUniqueEye(){
       let uniquEye = this.people
@@ -85,11 +87,18 @@ export default {
     sortByEyeColor(color){
       this.selectedColor = color
     },
+
   },
   watch: {
-    filteredData(nev, old){
-      console.log(nev, 'nev')
-      console.log(old, 'old')
+    selectedColor(nevSelected, oldSelected){
+      if(nevSelected){
+        this.chooseSort = ''
+      }
+    },
+    chooseSort(nevSort, oldSort){
+      if(nevSort){
+        this.selectedColor = ''
+      }
     }
   }
 }
